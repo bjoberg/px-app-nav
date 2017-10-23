@@ -21,7 +21,9 @@
         overflowed$="{{overflowed}}"
         collapsed$="{{collapsed}}"
         only-show-icon$="[[onlyShowIcon]]"
-        empty-icon="[[emptyIcon]]">
+        empty-icon="[[emptyIcon]]"
+        vertical="{{vertical}}"
+        expand-with-hover="[[expandWithHover]]">
     </px-app-nav-item>
 
     <div class="app-nav-subgroup__dropdown" id="groupcontainer">
@@ -179,7 +181,7 @@
     _onlyShowIconChanged(newVal, oldVal) {
       if (typeof oldVal !== 'boolean') return;
 
-      if (newVal && !oldVal && this.opened) {
+      if (newVal && !oldVal && this.opened && this.expandWithHover) {
         this.closeGroup();
         this._reopen = true;
         return;

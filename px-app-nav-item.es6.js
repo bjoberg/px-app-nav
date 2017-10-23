@@ -63,9 +63,22 @@
 
     /**
      * If an item has an icon and a label, get class to add margin between them.
+     * @param {* label of the item} labelStr
      */
     _addClassIfHasLabel(labelStr) {
       return (typeof labelStr === 'string' && labelStr.length) ? 'app-nav-item__icon--with-label' : '';
+    },
+
+    /**
+     * Check to see if the nav-item is in a vertical nav-bar, has children, and is collapsed
+     * 
+     * @param {* vertical state of the parent app-nav} vertical 
+     * @param {* dropdown state of the current nav-item} dropdown 
+     * @param {* collapsed state of the current nav-item's dropdown} collapsed 
+     */
+    _verticalDropdownSubgroupIsCollapsed(vertical, dropdown, collapsed) {
+      if (vertical && dropdown && collapsed) {return true;}
+      return false;
     }
   });
 })();

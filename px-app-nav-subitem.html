@@ -5,10 +5,19 @@
 <dom-module id="px-app-nav-subitem">
   <template>
     <style include="px-app-nav-subitem-styles"></style>
-
-    <template is="dom-if" if="{{_propIsTypeOf(label, 'string')}}">
-      <p class="app-nav-subitem__label">{{label}}</p>
+    
+    <!-- If vertical = true, expand-with-hover = false, verticalOpened = false -->
+    <template is="dom-if" if="{{_showIcon(vertical, expandWithHover, verticalOpened)}}">
+      <div class="app-nav-subitem__icon">{{_getInitials(label)}}</div>
     </template>
+
+    <!-- If vertical != true or expand-with-hover != true or verticalOpened != true -->
+    <template is="dom-if" if="{{!_showIcon(vertical, expandWithHover, verticalOpened)}}">
+      <template is="dom-if" if="{{_propIsTypeOf(label, 'string')}}">
+        <p class="app-nav-subitem__label">{{label}}</p>
+      </template>
+    </template>
+
   </template>
 </dom-module>
 

@@ -211,6 +211,26 @@
       },
 
       /**
+       * When `true`, the vertical navigation will expand when the user hovers over
+       * the component. When `false`, the vertical navigation will not expand when
+       * the component is hovered over.
+       */
+      expandWithHover: {
+        type: Boolean,
+        value: false,
+        notify: true
+      },
+
+      /**
+       * The icon being displayed on the app-nav
+       */
+      verticalExpandIcon: {
+        type: String,
+        value: "px-utl:overflow",
+        notify: true
+      },
+
+      /**
        * An array of items that are currently visible — they fit in the menu
        * and are not overflowed or collapse.
        */
@@ -325,6 +345,7 @@
 
     _handleMouseEnter() {
       if (!this.vertical) return;
+      if (!this.expandWithHover) return;
 
       this._mouseIsOverNav = true;
       if (this.isDebouncerActive('close-nav-on-mouseleave')) {
@@ -337,6 +358,7 @@
 
     _handleMouseLeave() {
       if (!this.vertical) return;
+      if (!this.expandWithHover) return;
 
       this._mouseIsOverNav = false;
       this.debounce('close-nav-on-mouseleave', function() {
@@ -344,6 +366,20 @@
           this._setVerticalOpened(false);
         }
       }, 250);
+    },
+
+    /**
+     * When the vertical hamburger menu is pressed, open / close the nav and update the icon to 
+     * reflect the nav bar state.
+     */
+    _handleVerticalExpandIconPressed() {
+      if (!this.verticalOpened) {
+        this._setVerticalOpened(true);
+        this.set("verticalExpandIcon", "px-nav:close");
+      } else {
+        this._setVerticalOpened(false);
+        this.set("verticalExpandIcon", "px-utl:overflow");
+      }
     },
 
     /**

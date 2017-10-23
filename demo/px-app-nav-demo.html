@@ -56,6 +56,7 @@
         id="appNav"
         items="[[props.items.value]]"
         vertical="[[props.vertical.value]]"
+        expand-with-hover="[[props.expandWithHover.value]]"
         collapse-with-icon="[[props.collapseWithIcon.value]]"
         collapse-all="[[props.collapseAll.value]]"
         collapse-at="[[props.collapseAt.value]]"
@@ -130,6 +131,7 @@
             }, {
               configName: "Vertical",
               vertical: true,
+              expandWithHover: true,
               configReset: true
             }, {
               configName: "Collapsed All",
@@ -170,6 +172,11 @@
         inputType: 'code:JSON'
       },
       vertical: {
+        type: Boolean,
+        defaultValue: false,
+        inputType: 'toggle',
+      },
+      expandWithHover: {
         type: Boolean,
         defaultValue: false,
         inputType: 'toggle',

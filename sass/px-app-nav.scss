@@ -58,7 +58,7 @@ $px-app-nav-vertical-transition: var(--px-app-nav-vertical-transition, max-width
 
 :host([vertical]) {
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: scroll;
   position: $px-app-nav-vertical-position;
   height: $px-app-nav-vertical-height;
   left: 0;
